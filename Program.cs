@@ -10,6 +10,11 @@ namespace MakeDocFromTemplate
     {
         static void Main(string[] args)
         {
+            var func = new MainFunctions();
+
+            func.StartApp();
+
+            Console.Read();
         }
     }
 }

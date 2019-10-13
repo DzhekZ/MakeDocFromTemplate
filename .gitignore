@@ -5,3 +5,5 @@
 /.vs
 /obj/Debug
 /packages/EntityFramework.6.3.0
+/bin/Debug
+/obj/Release
