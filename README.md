@@ -1,0 +1,2 @@
+# MakeDocFromTemplate
+test task
