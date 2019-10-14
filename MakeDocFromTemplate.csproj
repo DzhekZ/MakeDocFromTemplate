@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessFunctions.cs" />
     <Compile Include="DB\MakeDocDataSet.cs">
       <DependentUpon>MakeDocDataSet.xsd</DependentUpon>
     </Compile>
@@ -55,6 +57,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MakeDocDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ExcelFunctions.cs" />
     <Compile Include="MainFunctions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,6 +94,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Excel.Core\Excel.Core.csproj">
+      <Project>{85960ACD-08DF-41E2-859C-FAC19CE4E4D6}</Project>
+      <Name>Excel.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

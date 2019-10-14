@@ -24,9 +24,15 @@ namespace MakeDocFromTemplate
                 Console.WriteLine($"Tables count - {db.Tables.Count}");
             }
 
-            var tblAdapter1 = new DB.MakeDocDataSetTableAdapters.МагазинTableAdapter();
-            var tbl1 = tblAdapter1.GetData();
+            var tbl1 = AccessFunctions.LoadTable<DB.MakeDocDataSet.Библиотека_продуктовDataTable>(DbTables.Библиотека_продуктовDataTable);
             Console.WriteLine($"Table {tbl1.TableName} has records - {tbl1.Count}");
+            var tbl2 = AccessFunctions.LoadTable<DB.MakeDocDataSet.Заказ_на_доставкуDataTable>(DbTables.Заказ_на_доставкуDataTable);
+            Console.WriteLine($"Table {tbl2.TableName} has records - {tbl2.Count}");
+            var tbl3 = AccessFunctions.LoadTable<DB.MakeDocDataSet.МагазинDataTable>(DbTables.МагазинDataTable);
+            Console.WriteLine($"Table {tbl3.TableName} has records - {tbl3.Count}");
+            var tbl4 = AccessFunctions.LoadTable<DB.MakeDocDataSet.Составляющие_заказаDataTable>(DbTables.Составляющие_заказаDataTable);
+            Console.WriteLine($"Table {tbl4.TableName} has records - {tbl4.Count}");
         }
+
     }
 }
