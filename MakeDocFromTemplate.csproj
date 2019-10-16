@@ -59,6 +59,10 @@
     </Compile>
     <Compile Include="ExcelFunctions.cs" />
     <Compile Include="MainFunctions.cs" />
+    <Compile Include="Model\DbData.cs" />
+    <Compile Include="Model\ParamRow.cs" />
+    <Compile Include="Model\ParamsForTemplate.cs" />
+    <Compile Include="Model\QuotaRow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -92,9 +96,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Excel.Core\Excel.Core.csproj">
       <Project>{85960ACD-08DF-41E2-859C-FAC19CE4E4D6}</Project>

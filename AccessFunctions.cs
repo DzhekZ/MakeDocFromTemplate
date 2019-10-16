@@ -17,7 +17,8 @@ namespace MakeDocFromTemplate
             {
                 case DbTables.Библиотека_продуктовDataTable:
                     var tblAdapter1 = new DB.MakeDocDataSetTableAdapters.Библиотека_продуктовTableAdapter();
-                    var tblOut1 = tblAdapter1.GetData();
+                    MakeDocDataSet.Библиотека_продуктовDataTable tblOut1 = new MakeDocDataSet.Библиотека_продуктовDataTable();
+                    tblAdapter1.Fill(tblOut1);
                     return (T)Convert.ChangeType(tblOut1,typeof(MakeDocDataSet.Библиотека_продуктовDataTable));
                     break;
                 case DbTables.Заказ_на_доставкуDataTable:

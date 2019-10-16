@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using MakeDocFromTemplate.Model;
 
 namespace MakeDocFromTemplate
 {
@@ -10,9 +13,14 @@ namespace MakeDocFromTemplate
     {
         static void Main(string[] args)
         {
-            var func = new MainFunctions();
+            DbData data;
+            var funcs = new MainFunctions();
+            funcs.StartApp();
+            funcs.LoadDataFromDbToMemory(out data);
 
-            func.StartApp();
+            var excel = new ExcelFunctions();
+            string excelFileName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\ExcelFiles\\конфигурация для шаблона.xlsx";
+            var fileTemplateParams = excel.ReadDataForParamsForTemplate(excelFileName);
 
             Console.Read();
         }

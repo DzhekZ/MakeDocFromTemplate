@@ -7,11 +7,37 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Excel.Core.DataReader;
+using MakeDocFromTemplate.Model;
 
 namespace MakeDocFromTemplate
 {
-    public static class ExcelFunctions
+    public class ExcelFunctions
     {
+        public ParamsForTemplate ReadDataForParamsForTemplate(string filePath)
+        {
+            Console.WriteLine($"Start load Excel file from {filePath}");
+
+            ParamsForTemplate data = new ParamsForTemplate();
+
+            if (!Path.IsPathRooted(filePath))
+            {
+                filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, filePath);
+            }
+
+            data.FileName = filePath;
+            data.Date = DateTime.Now;
+
+            ExcelReader excelReader = new ExcelReader(filePath);
+
+            List<string> errorList;
+            var rows = excelReader.ReadRows<ParamRow>(0, 3, out errorList);
+            data.ImportErrors = errorList;
+            data.Params = rows;
+
+            Console.WriteLine($"End load Excel file from {filePath}. Errors: {data.GetErrorsString()}");
+
+            return data;
+        }
         public static ImportQuotasData ReadData(string filePath)
         {
             ImportQuotasData data = new ImportQuotasData();
@@ -32,7 +58,7 @@ namespace MakeDocFromTemplate
             }
 
             DateTime quotaDate;
-            if (DateTime.TryParseExact(match.Value, "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out quotaDate))
+            if (DateTime.TryParseExact(titleCell, "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out quotaDate))
             {
                 data.Date = quotaDate;
             }
@@ -46,6 +72,7 @@ namespace MakeDocFromTemplate
             var rows = excelReader.ReadRows<QuotaRow>(0, 3, out errorList);
             data.ImportErrors = errorList;
             data.Quotas = rows;
+
             return data;
         }
 
